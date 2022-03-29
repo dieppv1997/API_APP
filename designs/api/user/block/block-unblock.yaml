@@ -1,0 +1,44 @@
+put:
+  tags:
+    - block user
+  summary: Block user
+  description: Block user public và tạo request block với user private
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn block
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Block successful
+    '404':
+      description: userId không tồn tại hoặc đang ở trạng thái không active
+    '400':
+      description: userId không hợp lệ, hoặc hiện tại đang block userId
+delete:
+  tags:
+    - block user
+  summary: Unblock user
+  description: Unblock user
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn unblock
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Unblock successful
+    '404':
+      description: userId không tồn tại hoặc đang ở trạng thái không active
+    '400':
+      description: userId không hợp lệ, hoặc hiện tại đang không block userId

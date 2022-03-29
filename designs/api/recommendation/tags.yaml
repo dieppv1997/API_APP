@@ -1,0 +1,58 @@
+get:
+  tags:
+    - recommendation
+  summary: Get list recommend tag with posts
+  description: List recommend tag và các post thuộc tag, hiển thị ở tab timeline màn hình home khi user không có dữ liệu từ user follow
+  produces:
+    - "application/json"
+  parameters:
+    - name: current_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+    - name: post_per_tag
+      in: query
+      description: Số post hiển thị trong từng tag
+      required: false
+      type: integer
+      maximum: 15
+      minimum: 1
+      default: 9
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            tag_id:
+              type: integer
+              example: 123
+            name:
+              type: string
+              example: 北海道
+            posts:
+              type: array
+              items:
+                $ref: "./../_model/post/post_simple.yaml"

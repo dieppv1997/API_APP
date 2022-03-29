@@ -1,0 +1,58 @@
+get:
+  tags:
+    - user
+  summary: Lấy danh sách đã block của user
+  description: Returns list blocked of user
+  produces:
+    - application/json
+  parameters:
+    - name: current_page
+      in: query
+      description: Dùng để phân trang user
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang user
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 130
+            nickname:
+              type: string
+              example: Nickname01
+            avatar_image:
+              type: string
+              example: https://domain.com/img-name.jpg
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5
+
+

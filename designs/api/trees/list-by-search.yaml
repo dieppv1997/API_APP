@@ -1,0 +1,43 @@
+get:
+  tags:
+    - trees
+  summary: Search trees by name
+  description: Returns list trees
+  produces:
+    - application/json
+  parameters:
+    - name: keyword
+      in: query
+      description: Name trees search
+      required: true
+      schema:
+        type: object
+        properties:
+          tagName:
+            type: string
+            description: Tên trees muốn tìm kiếm
+            example: Hoa hồng
+  security:
+    - Bearer: []
+  responses:
+    '200':
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: Hoa hồng

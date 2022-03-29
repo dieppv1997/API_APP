@@ -1,0 +1,247 @@
+swagger: "2.0"
+info:
+  description: "OOT HANANOHI"
+  version: "1.0.0"
+  title: "OOT HANANOHI"
+  termsOfService: ""
+host: "127.0.0.1"
+basePath: "/api"
+tags:
+  - name: auth
+    description: Nhóm API đăng ký, đăng nhập, đăng xuất
+  - name: province
+    description: Province api
+  - name: user
+    description: Nhóm API quản lý thông tin user
+  - name: follow user
+    description: Nhóm API liên quan đến follow user
+  - name: block user
+    description: Nhóm API liên quan đến block user
+  - name: recommendation
+    description: Recommendation data
+  - name: post
+    description: Nhóm API liên quan đến post
+  - name: like post
+    description: Nhóm API liên quan đến like post
+  - name: comment
+    description: Nhóm API liên quan đến comment
+  - name: like comment
+    description: Nhóm API liên quan đến like comment
+  - name: tag
+    description: Nhóm API liên quan đến tag
+  - name: web view
+    description: Nhóm API liên quan đến web view
+  - name: app setting
+    description: Nhóm API setting app
+  - name: search
+    description: Nhóm API liên quan đến phần tìm kiếm theo key search
+  - name: notification
+    description: Nhóm API liên quan đến thông báo của user
+  - name: genre
+    description: Nhóm API genre
+  - name: trees
+    description: Nhóm API trees
+  - name: situation
+    description: Nhóm API situation
+  - name: taste
+    description: Nhóm API taste
+  - name: plan
+    description: Nhóm API plan
+  - name: main color
+    description: Nhóm API main color
+  - name: price range
+    description: Nhóm API price range
+
+schemes:
+- "https"
+paths:
+  #auth api
+  /auth/login:
+    $ref: './auth/login.yaml'
+  /auth/logout:
+    $ref: './auth/logout.yaml'
+  /auth/register-email:
+    $ref: './auth/register-email.yaml'
+  /auth/verify-email:
+    $ref: './auth/verify-email.yaml'
+  /auth/register-nickname:
+    $ref: './auth/register-nickname.yaml'
+  /auth/register-email/nickname:
+    $ref: './auth/register-email_nickname.yaml'
+  /auth/verify-email/nickname:
+    $ref: './auth/verify-email_nickname.yaml'
+
+  #user
+  /user:
+    $ref: './user/detail.yaml'
+  /user/update-profile:
+    $ref: './user/update-profile.yaml'
+  /user/{userId}:
+    $ref: './user/user_detail_by_id.yaml'
+  /user/reset-password/request:
+    $ref: './user/reset-password/request.yaml'
+  /user/reset-password/reset:
+    $ref: './user/reset-password/reset.yaml'
+  /user/change-password:
+    $ref: './user/change-password.yaml'
+  /user/change-email/request:
+    $ref: './user/change-email_request.yaml'
+  /user/change-email/verify:
+    $ref: './user/change-email_verify.yaml'
+  /user/:userId/followers:
+    $ref: './user/list/by-followers.yaml'
+  /user/:userId/following:
+    $ref: './user/list/by-following.yaml'
+  /user/blocked:
+    $ref: './user/list/by-blocked.yaml'
+  /user/setting/notification:
+    $ref: './user/setting/setting-notification.yaml'
+  /user/setting/privacy:
+    $ref: './user/setting/privacy.yaml'
+
+  #recommend
+  /recommendation/users:
+    $ref: './recommendation/users.yaml'
+  /recommendation/tags:
+    $ref: './recommendation/tags.yaml'
+
+  #follow
+  /user/follow/{userId}:
+    $ref: './user/follow/follow-unfollow.yaml'
+  /user/follow/request/{userId}:
+    $ref: './user/follow/approve-and-reject.yaml'
+
+  #block
+  /user/block/{userId}:
+    $ref: './user/block/block-unblock.yaml'
+
+  #post
+  /posts/:
+    $ref: './posts/list-and-create.yaml'
+  /posts/{postId}:
+    $ref: './posts/detail-update-and-delete.yaml'
+  /posts/edit/{postId}:
+    $ref: './posts/detail-draft.yaml'
+  /posts/public/{postId}:
+    $ref: './posts/public.yaml'
+  /posts/{postId}/like:
+    $ref: './posts/like/like-unlike.yaml'
+  /posts/list/by-tag/{tagID}:
+    $ref: './posts/list/by-tag.yaml'
+  /posts/list/by-tag/{tagID}/{postId}:
+    $ref: './posts/list/by-tag-and-post.yaml'
+  /posts/list/new-arrival:
+    $ref: './posts/list/new-arrival.yaml'
+  /posts/list/new-arrival/{postId}:
+    $ref: './posts/list/new-arrival-post.yaml'
+  /posts/list/by-following:
+    $ref: './posts/list/by-following.yaml'
+  /posts/list/draft:
+    $ref: './posts/list/draft-by-user.yaml'
+  /posts/list/:userId/my-post:
+    $ref: './posts/list/by-user.yaml'
+  /posts/list/:userId/my-post/:postId:
+    $ref: './posts/list/by-user-and-post.yaml'
+  /posts/list/:userId/liked-post:
+    $ref: './posts/list/by-user-liked.yaml'
+  /posts/list/:userId/liked-post/:likedId:
+    $ref: './posts/list/by-user-liked-and-post.yaml'
+
+  #comment
+  /posts/{postId}/comments:
+    $ref: './comments/list-and-create.yaml'
+  /posts/{postId}/comments/{commentId}:
+    $ref: './comments/update-and-delete.yaml'
+
+  /comments/{commentId}/like:
+    $ref: './comments/like/like-unlike.yaml'
+  #province
+  /province:
+    $ref: './province/list-province.yaml'
+  #tag
+  /tag:
+    $ref: './tag/list-by-search.yaml'
+  #web view
+  /web-view/picture-book:
+    $ref: './web-view/picture-book.yaml'
+  #app setting
+  /app-setting/fcm-token:
+    $ref: './app-setting/fcm-token.yaml'
+ #search
+  /search:
+    $ref: './search/search-by-nickname-and-tag.yaml'
+  /search/user:
+    $ref: './search/search-all-user.yaml'
+  /search/post:
+    $ref: './search/search-all-post-by-tag.yaml'
+  #notifications
+  /notifications:
+    $ref: './notifications/list-by-user.yaml'
+  /notifications/status:
+    $ref: './notifications/status.yaml'
+  /notifications/official/read/{notificationId}:
+    $ref: './notifications/official-read.yaml'
+  /notifications/mark-as-read:
+    $ref: './notifications/mark-as-read.yaml'
+  #genre
+  /genres:
+    $ref: './genre/list-genre.yaml'
+  #trees
+  /trees:
+    $ref: './trees/list-by-search.yaml'
+  #situations
+  /situations:
+    $ref: './situations/list-situation.yaml'
+  #tastes
+  /tastes:
+    $ref: './tastes/list-taste.yaml'
+  #plans
+  /plans:
+    $ref: './plans/list-plan.yaml'
+  #price ranges
+  /price-ranges:
+    $ref: './price-ranges/list-price-range.yaml'
+  #main color
+  /main-color:
+    $ref: './main-color/list-main-color.yaml'
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+definitions:
+  #Response format
+  ResponseErrorStatusCode:
+    type: object
+    properties:
+      "204":
+        type: string
+        description: "No Content(For post Success)"
+      "400":
+        type: string
+        description: "Bad request"
+      "401":
+        type: string
+        description: "Unauthorize"
+      "403":
+        type: string
+        description: "Forbidden"
+      "405":
+        type: string
+        description: "Method not allow"
+      "422":
+        type: string
+        description: "Unprocessable Entity"
+      "500":
+        type: string
+        description: "Internal Server Error"
+      "501":
+        type: string
+        description: "Not Implemented"
+      "502":
+        type: string
+        description: "Bad Gateway"
+      "503":
+        type: string
+        description: "Service Unavailable"

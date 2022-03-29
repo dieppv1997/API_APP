@@ -1,0 +1,49 @@
+post:
+  tags:
+  - "user"
+  summary: "Set new password api"
+  description: "Đổi password mới cho user"
+  operationId: "set-new-password"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/SetNewPasswordParam"
+  responses:
+    "200":
+      description: "Reset password successfully"
+      schema:
+        $ref: "#/definitions/SetNewPasswordSuccessResponse"
+    "422":
+      description: "Truyền thiếu hoặc sai param"
+    "400":
+      description: "Email không tồn tại, token không hợp lệ hoặc hết hạn"
+definitions:
+  #Response format
+  SetNewPasswordSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Change password successfully
+  #Input params
+  SetNewPasswordParam:
+    type: object
+    properties:
+      email:
+        type: string
+        example: example@example.com
+      token:
+        type: string
+        example: da1587e8ce42d2557d7da5b172f8174fb35730a4643f3fdc9628674293f75956
+      password:
+        type: string
+        example: H2g@75&bfr
+      password_confirmation:
+        type: string
+        example: H2g@75&bfr

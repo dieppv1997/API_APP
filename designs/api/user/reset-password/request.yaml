@@ -1,0 +1,38 @@
+post:
+  tags:
+  - "user"
+  summary: "Forgot password api"
+  description: "Gọi từ màn hình quên mật khẩu, truyền lên email để nhận email chứa link + token"
+  operationId: "request-reset-password"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/ForgotPasswordParam"
+  responses:
+    "200":
+      description: "Send email successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+    "422":
+      description: "Truyền thiếu email"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Send verify email successfully
+  #Input params
+  ForgotPasswordParam:
+    type: object
+    properties:
+      email:
+        type: string
+        example: user@example.com

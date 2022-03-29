@@ -1,0 +1,39 @@
+get:
+  tags:
+    - notification
+  summary: Get notifications status
+  description: ''
+  produces:
+    - 'application/json'
+  security:
+    - Bearer: []
+  responses:
+    "200":
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          has_new_notification:
+            type: boolean
+            example: true
+            description: Có noitification chưa đọc
+          detail:
+            type: object
+            description: Chi tiết trạng thái đã đọc / chưa đọc của từng loại notification
+            properties:
+              official:
+                type: boolean
+                example: false
+              activity:
+                type: boolean
+                example: true
+              follow_request:
+                type: boolean
+                example: true

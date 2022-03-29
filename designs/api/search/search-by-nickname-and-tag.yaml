@@ -1,0 +1,96 @@
+get:
+  tags:
+    - search
+  summary: Search nickname and tag by key search
+  description: Returns list users and list tag
+  produces:
+    - application/json
+  parameters:
+    - name: keyword
+      in: query
+      description: Từ khóa tìm kiếm
+      required: true
+      schema:
+        type: object
+        properties:
+          tagName:
+            type: string
+            description: Từ khóa người dùng muốn tìm kiếm
+            example: lovely
+    - name: current_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      users:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 130
+            nickname:
+              type: string
+              example: Lovely flower
+            avatar_image:
+              type: string
+              example: https://domain.com/img-name.jpg
+            is_public:
+              type: boolean
+              example: true
+            status_follow:
+              type: int
+              example: 1
+              description: 0:chưa follow, 1:đang follow, 2:đang gửi yêu cầu
+            block_user:
+              type: boolean
+              example: false
+      posts:
+        type: object
+        properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  example: 130
+                post_image:
+                  type: string
+                  example: https://domain.com/img-post.jpg
+                owner_by_current_user:
+                  type: boolean
+                  example: true
+          current_page:
+            type: number
+            example: 1
+          total_page:
+            type: number
+            example: 5
+
+

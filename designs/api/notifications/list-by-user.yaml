@@ -1,0 +1,99 @@
+get:
+  tags:
+    - notification
+  summary: Get list notifications
+  description: Danh sách thông báo của user
+  produces:
+    - 'application/json'
+  parameters:
+    - name: type
+      in: query
+      description: Dùng để xác định loại notification official | activity | follow_request
+      required: true
+      type: string
+    - name: current_page
+      in: query
+      description: Dùng để phân trang notification
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang notification
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+  security:
+    - Bearer: []
+  responses:
+    "200":
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            actor_id:
+              type: integer
+              example: 123
+              description: id người tác động thông báo
+            actor_avatar:
+              type: string
+              example: https://domain.com/img-post.jpg
+              description: ảnh người tác đối với type follow_request
+            actor_name:
+              type: string
+              example: dieppv
+              description: name người tác động thông báo
+            content:
+              type: string
+              example: User A vừa comment bài viết của bạn
+            notification_id:
+              type: integer
+              example: 1
+            time:
+              type: string
+              example: '30 minutes ago'
+            is_readed:
+              type: boolean
+              example: true
+            notification_type:
+              type: string
+              description: Loại thông b
+              example: LIKE_POST
+            payload:
+              type: object
+              properties:
+                entity_id:
+                  type: integer
+                  description: ID bài post hoặc user nhận thông báo
+                  example: 23
+                entity_type:
+                  type: string
+                  description: Loại entity_id :post | user
+                  example: user
+                data:
+                  type: object
+                  description: Data kèm theo từng
+                  properties:
+                    image_post:
+                      type: string
+                      example: https://domain.com/img-post.jpg
+                    follow_status:
+                      type: integer
+                      example: 1
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5

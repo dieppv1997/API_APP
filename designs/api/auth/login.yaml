@@ -1,0 +1,46 @@
+post:
+  tags:
+  - "auth"
+  summary: "Login api"
+  description: "Login using email and password"
+  operationId: "login"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/LoginParam"
+  responses:
+    "200":
+      description: "Login successfully"
+      schema:
+        $ref: "#/definitions/LoginSuccessResponse"
+    "401":
+      description: "Login failed"
+    "500":
+      description: "Internal server error"
+definitions:
+  #Response format
+  LoginSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Successfully!
+      access_token:
+        type: string
+        example: 79|vaVXn2Al6Lzl557aX0HjIANCpdMEVCjJ5CIYtCPz
+  #Input params
+  LoginParam:
+    type: object
+    properties:
+      email:
+        type: string
+        example: user@example.com
+      password:
+        type: string
+        example: H2g@75&bfr

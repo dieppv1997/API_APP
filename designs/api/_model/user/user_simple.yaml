@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 123
+  nickname:
+    type: string
+    example: 北海道
+  avatar_image:
+    type: string
+    example: https://domain.com/img-name.jpg

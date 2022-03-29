@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 123
+  post_image:
+    type: string
+    example: https://domain.com/img-name.jpg
+  owner_by_current_user:
+    type: boolean
+    example: true

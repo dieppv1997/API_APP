@@ -1,0 +1,45 @@
+post:
+  tags:
+  - "auth"
+  summary: "Đăng ký email cho tài khoản đang sử dụng nickname"
+  description: "`email` and `password` is required."
+  operationId: "register-email_nickname"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        email:
+          type: string
+          example: user@example.com
+        password:
+          type: string
+          example: aHxj12n
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Successfully. User will receive a email with verify code"
+      schema:
+        $ref: "#/definitions/RegisterSuccessResponse"
+
+definitions:
+  #Response format
+  RegisterSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Register successfully
+      verify_code:
+        type: string
+        example: xDUJhvIc3QQoaG8Etd5RbQQmnodmb4FdATWh6caI
+      user_id:
+        type: integer
+        example: 123

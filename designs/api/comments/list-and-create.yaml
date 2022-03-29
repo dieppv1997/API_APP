@@ -1,0 +1,96 @@
+post:
+  tags:
+    - comment
+  summary: Add or reply comment to the specific post
+  description: Post 1 comment hoàn toàn mới hoặc trả lời 1 comment
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+    - name: body
+      in: body
+      required: true
+      schema:
+        $ref: '#/definitions/InputParam'
+  security:
+  - Bearer: []
+  responses:
+    '201':
+      description: Comment successfully
+get:
+  tags:
+    - comment
+  summary: Get list comment of specific post
+  description: Get list comment cấp 1 của post hoặc list các reply của 1 comment. Lưu ý nếu có truyền thêm parent_id thì current_page, per_page, total_page trong request và response được hiểu là tính cho list replies của comment parent_id
+  produces:
+    - "application/json"
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+    - name: current_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+    - name: parent_id
+      in: query
+      description: Id parent comment
+      required: false
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessGetResponse"
+
+definitions:
+  #Response format
+  SuccessGetResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Get comment successfully
+      data:
+        type: array
+        items:
+          $ref: './../_model/comment/comment_object.yaml'
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5
+  #Input params
+  InputParam:
+    type: object
+    properties:
+      parent_id:
+        type: integer
+        description: Parent comment. Dùng trong trường hợp reply comment.
+        example: 24
+      content:
+        type: string
+        description: Required and limit 2000 characters
+        example: Hello. This is my comment

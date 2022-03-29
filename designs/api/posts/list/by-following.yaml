@@ -1,0 +1,45 @@
+get:
+  tags:
+    - post
+  summary: Get list post from following user
+  description: ''
+  produces:
+    - 'application/json'
+  parameters:
+    - name: current_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "./../../_model/post/post_full.yaml"
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5

@@ -1,0 +1,43 @@
+get:
+  tags:
+    - recommendation
+  summary: Get list recommend user
+  description: List recommend user hiển thị ở tab timeline màn hình home khi user không có dữ liệu từ user follow
+  produces:
+    - "application/json"
+  parameters:
+    - name: current_page
+      in: query
+      description: Dùng để phân trang
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang
+      required: false
+      type: integer
+      maximum: 50
+      minimum: 1
+      default: 10
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "#/definitions/UserModel"
+
+  #Model
+  UserModel:
+    $ref: "./../_model/user/user_simple.yaml"

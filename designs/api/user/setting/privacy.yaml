@@ -1,0 +1,29 @@
+post:
+  tags:
+    - user
+  summary: Setting user private/public
+  description: Chuyển trạng thái private hoặc public cho user
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - name: body
+      in: body
+      required: true
+      schema:
+        $ref: '#/definitions/InputParam'
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+
+definitions:
+  #Input params
+  InputParam:
+    type: object
+    properties:
+      is_public:
+        type: int
+        example: 1
+        description: 1:public 0:private

@@ -1,0 +1,204 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* reset
+--------------------------------------------------------*/
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+figure,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+fieldset,
+img {
+  border: 0;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+  font-style: normal;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+caption,
+th {
+  text-align: left;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+q:before,
+q:after {
+  content: '';
+}
+
+abbr,
+acronym {
+  border: 0;
+}
+
+img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/* for common
+--------------------------------------------------------*/
+html {
+  padding: 20px 16px 20px;
+}
+
+body {
+  color: #333;
+  width: 100%;
+  background: #fff;
+  overflow-x: hidden;
+  font-family: Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", sans-serif;
+  line-height: 1.5;
+}
+
+h1 {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+h2 {
+  margin-bottom: 14px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+section {
+  margin: 18px 0;
+}
+
+section p {
+  margin: 10px 0;
+}
+
+.purpose-of-use ol li {
+  position: relative;
+  margin-top: 6px;
+  padding-left: 26px;
+}
+
+.purpose-of-use ol li span {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.purpose-of-use ol li ol li {
+  padding-left: 40px;
+}
+
+/* for privacy
+--------------------------------------------------------*/
+.privacy-policy ul li {
+  margin: 0 0 10px 20px;
+  list-style: disc;
+}
+
+.date_pmark {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+ol li p {
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+
+ol li p span {
+  margin-right: 3px;
+}
+
+.notice {
+  margin-top: 20px;
+}
+
+.notice ul li {
+  position: relative;
+  margin-top: 6px;
+  padding-left: 16px;
+  font-size: 12px;
+}
+
+.notice ul li span {
+  position: absolute;
+  top: 1px;
+  left: 0;
+}
+
+/* for terms
+--------------------------------------------------------*/
+.terms-wrap h2 {
+  margin: 20px 0 10px 0;
+}
+
+
+

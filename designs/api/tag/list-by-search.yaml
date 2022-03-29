@@ -1,0 +1,43 @@
+get:
+  tags:
+    - tag
+  summary: Search tag by tag name
+  description: Returns list tag
+  produces:
+    - application/json
+  parameters:
+    - name: tagName
+      in: query
+      description: Name tag search
+      required: true
+      schema:
+        type: object
+        properties:
+          tagName:
+            type: string
+            description: Tên tag muốn tìm kiếm
+            example: lovely
+  security:
+    - Bearer: []
+  responses:
+    '200':
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: Lovely flower

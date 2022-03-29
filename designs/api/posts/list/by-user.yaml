@@ -1,0 +1,63 @@
+get:
+  tags:
+    - post
+  summary: Get list my post of user
+  description: Danh sách bài post bản thân hoặc của user khác
+  produces:
+    - "application/json"
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn xem profile
+      required: true
+      type: integer
+    - name: current_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successfully
+      schema:
+        $ref: "#/definitions/SuccessGetResponse"
+definitions:
+  #Response format
+  SuccessGetResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 123
+            caption:
+              type: string
+              example: Hello. This is my caption.
+            post_image:
+              type: string
+              example: https://domain.com/img-post.jpg
+            posted_at:
+              type: string
+              example: '30 minutes ago'
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5

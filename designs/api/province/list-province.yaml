@@ -1,0 +1,46 @@
+get:
+  tags:
+    - "province"
+  summary: Get list province.
+  description: Get list province for register by nickname screen.
+  consumes:
+    - "application/x-www-form-urlencoded"
+  produces:
+    - "application/json"
+  parameters:
+    - name: params
+      in: params
+      required: true
+      schema:
+        $ref: "#/definitions/ListProvinceParam"
+  responses:
+    "200":
+      description: "successfully"
+      schema:
+        $ref: "#/definitions/GetProvinceSuccessfully"
+    "500":
+      description: "Internal server error"
+definitions:
+  #Response format
+  GetProvinceSuccessfully:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+              format: int16
+              example: 123
+            name:
+              type: string
+              example: 北海道
+  #Input params
+  ListProvinceParam:
+    type: object
+    properties:
+      lang_code:
+        type: string
+        example: ja

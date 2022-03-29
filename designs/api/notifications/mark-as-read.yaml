@@ -1,0 +1,23 @@
+post:
+  tags:
+    - notification
+  summary: Mark notification as read by type
+  description: ''
+  produces:
+    - application/json
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        type:
+          type: string
+          description: activity or follow_request
+          example: activity
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Successful Operation.

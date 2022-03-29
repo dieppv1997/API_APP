@@ -1,0 +1,75 @@
+put:
+  tags:
+    - comment
+  summary: Edit comment
+  description: ''
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+    - name: commentId
+      in: path
+      description: ID của comment
+      required: true
+      type: integer
+    - in: body
+      name: body
+      description: Updated user object
+      required: true
+      schema:
+        $ref: '#/definitions/InputParam'
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Successful operation
+delete:
+  tags:
+    - comment
+  summary: Delete comment
+  description: ''
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+    - name: commentId
+      in: path
+      description: ID của comment
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Delete Comment Successful
+      schema:
+        $ref: '#/definitions/DeleteSuccessResponse'
+    '404':
+      description: postId,commentId không hợp lệ hoặc post đang ở trạng thái không active
+    '400':
+      description: postId không hợp lệ hoặc hiện tại user chưa có comment nào cho bài post
+definitions:
+#Input params
+  InputParam:
+    type: object
+    properties:
+      content:
+        type: string
+        required: true
+        description: Required and limit 2000 characters
+        example: Hello. This is my comment
+#Response format
+  DeleteSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: delete comment successfully

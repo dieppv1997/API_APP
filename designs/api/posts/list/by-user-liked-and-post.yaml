@@ -1,0 +1,56 @@
+get:
+  tags:
+    - post
+  summary: Danh sách post đã like của user từ 1 bài post
+  description: Danh sách post đã like của user khi click vào 1 bài post
+  produces:
+    - "application/json"
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn xem bài post đã like
+      required: true
+      type: integer
+    - name: likedId
+      in: path
+      description: liked_id của post mà người dùng click vào
+      required: true
+      type: integer
+    - name: current_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successfully
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "./../../_model/post/post_full.yaml"
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5
+

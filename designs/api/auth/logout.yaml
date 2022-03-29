@@ -1,0 +1,36 @@
+post:
+  tags:
+  - "auth"
+  summary: "Logout api"
+  description: "Logout api"
+  operationId: "logout"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      type: object
+      properties:
+        fcm_token:
+          type: string
+          required: false
+          example: n3FXAGkzpDsP3n2XOeExNMnnqnrAAtarvG7AIXleDXJRWeBoDc
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Logout successfully"
+      schema:
+        $ref: "#/definitions/LogoutSuccessResponse"
+definitions:
+  #Response format
+  LogoutSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Successfully!

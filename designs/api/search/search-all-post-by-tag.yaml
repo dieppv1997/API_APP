@@ -1,0 +1,64 @@
+get:
+  tags:
+    - search
+  summary: Search all posts by key search
+  description: Returns list post from postId by key search
+  produces:
+    - application/json
+  parameters:
+    - name: keyword
+      in: query
+      description: Từ khóa tìm kiếm
+      required: true
+      schema:
+        type: object
+        properties:
+          keyword:
+            type: string
+            description: Từ khóa người dùng muốn tìm kiếm
+            example: lovely
+    - name: postId
+      in: query
+      description: ID của post đang xem
+      required: true
+      type: integer
+    - name: current_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang post
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "./../_model/post/post_full.yaml"
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5
+
+

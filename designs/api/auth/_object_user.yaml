@@ -1,0 +1,50 @@
+type: object
+properties:
+  id:
+    type: number
+    format: int16
+  nickname:
+    type: string
+  email:
+    type: string
+  email_verified_at:
+    type: string
+    format: date-time
+  avatar_image:
+    type: string
+  cover_image:
+    type: string
+  birthday:
+    type: string
+    format: date
+  gender:
+    type: number
+  favorite_shop:
+    type: string
+  show_favorite_shop:
+    type: number
+  favorite_place:
+    type: string
+  show_favorite_place:
+    type: number
+  intro:
+    type: string
+  show_intro:
+    type: number
+  province_id:
+    type: number
+  activated:
+    type: number
+  device_id":
+    type: number
+  register_type:
+    type: number
+  created_at:
+    type: string
+    format: date-time
+  updated_at:
+    type: string
+    format: date-time
+  deleted_at:
+    type: string
+    format: date-time

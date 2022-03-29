@@ -1,0 +1,58 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 123
+  content:
+    type: string
+    example: Hello. This is my comment.
+  commented_at:
+    type: string
+    example: '2021-12-07 16:15'
+  author:
+    type: object
+    properties:
+      author_id:
+        type: integer
+        example: 34
+      author_name:
+        type: string
+        example: Michael
+      author_avatar:
+        type: string
+        example: https://domain.com/img-name.jpg
+  liked:
+    type: boolean
+    example: true
+  like_count:
+    type: integer
+    example: 3
+  owner_by_current_user:
+    type: boolean
+    example: true
+  replies:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 130
+        content:
+          type: string
+          example: OK. I reply you here
+        commented_at:
+          type: string
+          example: 30 minutes ago
+        author:
+          type: object
+          properties:
+            author_id:
+              type: integer
+              example: 60
+            author_name:
+              type: string
+              example: Laura
+            author_avatar:
+              type: string
+              example: https://domain.com/img-name.jpg

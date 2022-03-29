@@ -1,0 +1,50 @@
+get:
+  tags:
+    - post
+  summary: Get list post new arrival from specific post
+  description: List các bài post new arrival khi truy cập 1 bài post từ màn hình new arrival
+  produces:
+    - 'application/json'
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post đang xem
+      required: true
+      type: integer
+    - name: current_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang tag
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: "./../../_model/post/post_full.yaml"
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5

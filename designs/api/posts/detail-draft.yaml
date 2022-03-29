@@ -1,0 +1,56 @@
+get:
+  tags:
+    - post
+  summary: Detail post / draft by ID for edit post / draft
+  description: Returns a single post
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID of post to show
+      required: true
+  security:
+    - Bearer: []
+  responses:
+    '200':
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/GetSuccessResponse'
+definitions:
+  #Response get detail
+  GetSuccessResponse:
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          id:
+            type: integer
+            example: 123
+          caption:
+            type: string
+            example: Hello. This is my caption.
+          post_image:
+            type: string
+            example: https://domain.com/img-post.jpg
+          place:
+            type: object
+            properties:
+              place_id:
+                type: integer
+                example: 23
+              place_name:
+                type: string
+                example: Central Park - Tokyo
+          tags:
+            type: array
+            items:
+              type: object
+              properties:
+                tag_id:
+                  type: integer
+                  example: 130
+                tag_name:
+                  type: string
+                  example: Lovely flower

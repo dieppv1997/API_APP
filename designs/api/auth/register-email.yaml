@@ -1,0 +1,46 @@
+post:
+  tags:
+  - "auth"
+  summary: "Register by email and password"
+  description: "`email` and `password` is required."
+  operationId: "register-email"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/RegisterParam"
+  responses:
+    "200":
+      description: "Register successfully. User will receive a email with verify code"
+      schema:
+        $ref: "#/definitions/RegisterSuccessResponse"
+
+definitions:
+  #Response format
+  RegisterSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Register successfully
+  #Input params
+  RegisterParam:
+    type: object
+    properties:
+      email:
+        type: string
+        example: user@example.com
+      password:
+        type: string
+        example: H2g@75&bfr
+      nickname:
+        type: string
+        example: myName
+      province_id:
+        type: number
+        example: 123

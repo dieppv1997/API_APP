@@ -1,0 +1,67 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 123
+  caption:
+    type: string
+    example: Hello. This is my caption.
+  post_image:
+    type: string
+    example: https://domain.com/img-post.jpg
+  posted_at:
+    type: string
+    example: '30 minutes ago'
+  place:
+    type: object
+    properties:
+      place_id:
+        type: string
+        example: BqZxNQEVeZ6KB03
+      place_name:
+        type: string
+        example: Central Park
+      place_address:
+        type: string
+        example: 124 Main Street - Tokyo
+      latitude:
+        type: string
+        example: '23.56985965'
+      longtidude:
+        type: string
+        example: '105.87685652'
+  author:
+    type: object
+    properties:
+      author_id:
+        type: integer
+        example: 34
+      author_name:
+        type: string
+        example: Michael
+      author_avatar:
+        type: string
+        example: https://domain.com/img-name.jpg
+  like_count:
+    type: string
+    example: "34k"
+  comment_count:
+    type: string
+    example: "1,4k"
+  liked:
+    type: boolean
+    example: true
+  tags:
+    type: array
+    items:
+      type: object
+      properties:
+        tag_id:
+          type: integer
+          example: 130
+        tag_name:
+          type: string
+          example: Lovely flower
+  owner_by_current_user:
+    type: boolean
+    example: true

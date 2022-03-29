@@ -1,0 +1,21 @@
+post:
+  tags:
+    - user
+  summary: Get current user detail
+  description: ''
+  produces:
+    - application/json
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        $ref: './../_model/user/detail.yaml'

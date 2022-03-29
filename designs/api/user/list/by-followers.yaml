@@ -1,0 +1,76 @@
+get:
+  tags:
+    - user
+  summary: Lấy danh sách follower của 1 user
+  description: Returns list follower of users
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: query
+      description: ID của user muốn xem list follower
+      required: true
+      type: integer
+      minimum: 1
+    - name: current_page
+      in: query
+      description: Dùng để phân trang user
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang user
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/SuccessResponse'
+
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 130
+            nickname:
+              type: string
+              example: Lovely flower
+            avatar_image:
+              type: string
+              example: https://domain.com/img-name.jpg
+            is_public:
+              type: int
+              example: 1
+              description: 1:public, 0:private
+            status_follow:
+              type: int
+              example: 1
+              description: Quan hệ follow của user đăng nhập và user được xem (0:chưa follow, 1:đang follow, 2:đang gửi yêu cầu)
+            block_user:
+              type: int
+              example: 1
+              description: Quan hệ block của user đăng nhập và user được xem (0:không block, 1:đang block)
+      current_page:
+        type: number
+        example: 1
+      total_page:
+        type: number
+        example: 5
+
+

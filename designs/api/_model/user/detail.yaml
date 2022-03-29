@@ -1,0 +1,47 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 123
+  nickname:
+    type: integer
+    example: 北海道
+  email:
+    type: email
+    example: example@example.com
+  avatar_image:
+    type: string
+    example: https://domain.com/img-name.jpg
+  cover_image:
+    type: string
+    example: https://domain.com/img-name.jpg
+  birthday:
+    type: string
+    format: date
+  gender:
+    type: integer
+    example: 1
+  favorite_shop:
+    type: integer
+    example: Lovely shop
+  show_favorite_shop:
+    type: bool
+    example: true
+  favorite_place:
+    type: string
+    example: Lovely place
+  show_favorite_place:
+    type: bool
+    example: false
+  intro:
+    type: string
+    example: Hello. Welcome to my wall
+  show_intro:
+    type: bool
+    example: false
+  province_id:
+    type: string
+    example: Tokyo
+  created_at:
+    type: string
+    format: date

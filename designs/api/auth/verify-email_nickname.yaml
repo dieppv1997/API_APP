@@ -1,0 +1,42 @@
+post:
+  tags:
+  - "auth"
+  summary: "Verify email với user đang sử dụng nickname"
+  description: "`verify_code` is required."
+  operationId: "verify-email_nickname"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/VerifyParam"
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Verify successfully"
+      schema:
+        $ref: "#/definitions/VerifySuccessResponse"
+
+definitions:
+  #Response format
+  VerifySuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Verify successfully
+  #Input params
+  VerifyParam:
+    type: object
+    properties:
+      verify_code:
+        type: string
+        example: "756029"
+  #Model
+  UserModel:
+    $ref: './_object_user.yaml'

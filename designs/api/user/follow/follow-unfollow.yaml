@@ -1,0 +1,44 @@
+put:
+  tags:
+    - follow user
+  summary: Follow user
+  description: Follow user public và tạo request follow với user private
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn follow
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Follow successful với user public, request follow thành công với user private
+    '404':
+      description: userId không tồn tại hoặc đang ở trạng thái không active
+    '400':
+      description: userId không hợp lệ, hoặc hiện tại đang follow userId
+delete:
+  tags:
+    - follow user
+  summary: Unfollow user
+  description: Unfollow user
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn unfollow
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: UnFollow successful
+    '404':
+      description: userId không tồn tại hoặc đang ở trạng thái không active
+    '400':
+      description: userId không hợp lệ, hoặc hiện tại đang không follow userId

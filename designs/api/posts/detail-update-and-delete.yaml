@@ -1,0 +1,168 @@
+get:
+  tags:
+    - post
+  summary: Detail post by ID
+  description: Returns a single post
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID of post to show
+      required: true
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Successful operation
+      schema:
+        $ref: '#/definitions/GetSuccessResponse'
+post:
+  tags:
+    - post
+  summary: Update bài post / draft
+  description: ''
+  consumes:
+    - multipart/form-data
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+    - name: image
+      in: formData
+      description: File to upload. Cho phép up ảnh jpg, png, HEIC. Max 5MB
+      required: false
+      type: file
+    - name: caption
+      in: formData
+      type: string
+      required: false
+      maxLength: 2000
+      example: Hoa đẹp
+    - name: place
+      in: formData
+      type: integer
+      description: Địa điểm post bài
+      example: 1
+    - name: tags[]
+      in: formData
+      type: string
+      example: flower
+    - name: trees
+      in: formData
+      type: string
+      required: false
+      description: Tên loại cây, hoa
+      example: Hoa hồng
+    - name: genre_id
+      in: formData
+      type: integer
+      required: false
+      description: Giống cây (loại cây)
+      example: Thân leo
+    - name: situation_id[]
+      in: formData
+      type: integer
+      required: false
+      description: Tình huống
+    - name: taste_id
+      in: formData
+      type: integer
+      required: false
+      description: Mùi hương, chỉ có 1 loại mùi hương
+    - name: price_range_id
+      in: formData
+      type: integer
+      required: false
+      description: Khoảng giá, chỉ có 1 khoảng giá
+    - name: plan_id
+      in: formData
+      type: integer
+      required: false
+      description: Chỉ chọn 1 plan_hana
+    - name: main_color_id
+      in: formData
+      type: integer
+      required: false
+      description: Mã màu, chỉ chọn 1 mã màu
+    - name: place[place_id]
+      description: Google place id. Lưu ý nếu truyền place thì cần truyền đủ 5 thông tin place_id, place_name, place_address, latitude, longitude
+      in: formData
+      type: string
+      example: BqZxNQEVeZ6KB03
+    - name: place[place_name]
+      in: formData
+      type: string
+      example: Công viên Nghĩa Đô
+    - name: place[place_address]
+      in: formData
+      type: string
+      example: Tô Hiệu - Cầu Giấy
+    - name: place[latitude]
+      in: formData
+      type: string
+      example: '23.56985965'
+    - name: place[longitude]
+      in: formData
+      type: string
+      example: '103.97865454'
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            example: Successful
+          data:
+            type: object
+            properties:
+              post_id:
+                type: integer
+                example: 1
+    404:
+      description: postId không hợp lệ hoặc post đã bị xóa
+delete:
+  tags:
+    - post
+  summary: Delete post / draft
+  description: Xóa bài đăng hoặc draft
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Delete Post Successful
+      schema:
+        $ref: '#/definitions/DeleteSuccessResponse'
+    404:
+      description: postId không hợp lệ hoặc post đã bị xóa
+    400:
+      description: postId không hợp lệ hoặc hiện tại user chưa có baì post nào
+definitions:
+  #Response get detail
+  GetSuccessResponse:
+    type: object
+    properties:
+      data:
+        $ref: './../_model/post/post_full.yaml'
+  DeleteSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: delete post successfully

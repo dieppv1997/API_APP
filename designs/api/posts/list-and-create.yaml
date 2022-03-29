@@ -1,0 +1,113 @@
+post:
+  tags:
+    - post
+  summary: Tạo bài post / draft
+  description: Do có file upload, data cần truyền lên ở dạng formData
+  consumes:
+    - multipart/form-data
+  produces:
+    - application/json
+  parameters:
+    - name: image
+      in: formData
+      description: File to upload. Cho phép up ảnh jpg, png, HEIC. Max 5MB
+      required: true
+      type: file
+    - name: caption
+      in: formData
+      type: string
+      required: false
+      maxLength: 2000
+      example: Hoa đẹp
+    - name: place
+      in: formData
+      type: integer
+      description: Địa điểm post bài
+      example: 1
+    - name: tags[]
+      in: formData
+      type: string
+      example: flower
+    - name: trees
+      in: formData
+      type: string
+      required: false
+      description: Tên loại cây, hoa
+      example: Hoa hồng
+    - name: genre_id
+      in: formData
+      type: integer
+      required: false
+      description: Giống cây (loại cây)
+      example: Thân leo
+    - name: situation_id[]
+      in: formData
+      type: integer
+      required: false
+      description: Tình huống
+    - name: taste_id
+      in: formData
+      type: integer
+      required: false
+      description: Mùi hương, chỉ có 1 loại mùi hương
+    - name: price_range_id
+      in: formData
+      type: integer
+      required: false
+      description: Khoảng giá, chỉ có 1 khoảng giá
+    - name: plan_id
+      in: formData
+      type: integer
+      required: false
+      description: Chỉ chọn 1 plan_hana
+    - name: main_color_id
+      in: formData
+      type: integer
+      required: false
+      description: Mã màu, chỉ chọn 1 mã màu
+    - name: type
+      in: formData
+      type: integer
+      required: true
+      description: Trạng thái bài post (1:post, 0:draft)
+      example: 1
+    - name: place[place_id]
+      description: Google place id. Lưu ý nếu truyền place thì cần truyền đủ 5 thông tin place_id, place_name, place_address, latitude, longitude
+      in: formData
+      type: string
+      example: BqZxNQEVeZ6KB03
+    - name: place[place_name]
+      in: formData
+      type: string
+      example: Công viên Nghĩa Đô
+    - name: place[place_address]
+      in: formData
+      type: string
+      example: Tô Hiệu - Cầu Giấy
+    - name: place[latitude]
+      in: formData
+      type: string
+      example: '23.56985965'
+    - name: place[longitude]
+      in: formData
+      type: string
+      example: '103.97865454'
+  security:
+    - Bearer: []
+  responses:
+    201:
+      description: Successful
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            example: Successful
+          data:
+            type: object
+            properties:
+              post_id:
+                type: integer
+                example: 1
+    400:
+      description: Type không hợp lệ

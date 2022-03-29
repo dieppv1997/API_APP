@@ -1,0 +1,29 @@
+post:
+  tags:
+    - app setting
+  summary: Lưu FCM token
+  description: ''
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - name: body
+      in: body
+      required: true
+      schema:
+        $ref: '#/definitions/InputParam'
+  security:
+  - Bearer: []
+  responses:
+    201:
+      description: Successful operation
+
+definitions:
+  #Input params
+  InputParam:
+    type: object
+    properties:
+      fcm_token:
+        type: string
+        example: n3FXAGkzpDsP3n2XOeExNMnnqnrAAtarvG7AIXleDXJRWeBoDc

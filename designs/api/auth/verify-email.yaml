@@ -1,0 +1,51 @@
+post:
+  tags:
+  - "auth"
+  summary: "Verify when register by email"
+  description: "`verify_code` and `user_id` is required."
+  operationId: "verify-email"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/VerifyParam"
+  responses:
+    "200":
+      description: "Verify successfully"
+      schema:
+        $ref: "#/definitions/VerifySuccessResponse"
+
+definitions:
+  #Response format
+  VerifySuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Verify successfully
+      access_token:
+        type: string
+        example: xDUJhvIc3QQoaG8Etd5RbQQmnodmb4FdATWh6caI
+      token_type:
+        type: string
+        example: "Bearer"
+      data:
+        $ref: "#/definitions/UserModel"
+  #Input params
+  VerifyParam:
+    type: object
+    properties:
+      verify_code:
+        type: string
+        example: "756029"
+      user_id:
+        type: integer
+        example: 123
+  #Model
+  UserModel:
+    $ref: './_object_user.yaml'

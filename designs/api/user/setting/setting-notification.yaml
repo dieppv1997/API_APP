@@ -1,0 +1,63 @@
+post:
+  tags:
+    - user
+  summary: Setting notification
+  description: On/off receive notification
+  consumes:
+    - application/json
+  produces:
+    - application/json
+  parameters:
+    - name: body
+      in: body
+      required: false
+      schema:
+        $ref: '#/definitions/InputParam'
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+
+get:
+  tags:
+  - user
+  summary: Get notification setting info
+  description: ''
+  produces:
+  - application/json
+  security:
+  - Bearer: []
+  responses:
+    200:
+      description: Successful operation
+      schema:
+        type: object
+        properties:
+          enable_notification_post:
+            type: boolean
+            example: true
+          enable_notification_comment:
+            type: boolean
+            example: false
+          enable_notification_following:
+            type: boolean
+            example: true
+
+definitions:
+  #Input params
+  InputParam:
+    type: object
+    properties:
+      enable_notification_post:
+        type: int
+        example: 1
+        description: 1:enable 0:disable
+      enable_notification_comment:
+        type: int
+        example: 0
+        description: 1:enable 0:disable
+      enable_notification_following:
+        type: int
+        example: 1
+        description: 1:enable 0:disable

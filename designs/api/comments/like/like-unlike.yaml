@@ -1,0 +1,66 @@
+put:
+  tags:
+    - like comment
+  summary: Like comment
+  description: Like comment
+  produces:
+    - application/json
+  parameters:
+    - name: commentId
+      in: path
+      description: ID của comment muốn like
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Like Comment Successful. Hoặc hiện tại user đã like comment nhưng re-call api like
+      schema:
+        $ref: '#/definitions/LikeSuccessResponse'
+    '404':
+      description: commentId không tồn tại
+    '400':
+      description: commentId không hợp lệ
+delete:
+  tags:
+    - like comment
+  summary: Unlike comment
+  description: Unlike comment
+  produces:
+    - application/json
+  parameters:
+    - name: commentId
+      in: path
+      description: ID của comment muốn unlike
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Unlike Comment Successful. Hoặc hiện tại user vừa unlike comment nhưng re-call api unlike
+      schema:
+        $ref: '#/definitions/UnlikeSuccessResponse'
+    '404':
+      description: commentId không tồn tại
+    '400':
+      description: commentId không hợp lệ
+definitions:
+  #Response format
+  LikeSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Like successfully
+      data:
+        $ref: './../../_model/post/post_full.yaml'
+  UnlikeSuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Unlike successfully
+      data:
+        $ref: './../../_model/post/post_full.yaml'

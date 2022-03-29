@@ -1,0 +1,41 @@
+post:
+  tags:
+  - "user"
+  summary: "Verify verify_code for change email"
+  description: "User sau khi request đổi email, dùng verify_code nhận được từ email để được chấp nhận đổi email"
+  operationId: "verify-change-email"
+  consumes:
+  - "application/x-www-form-urlencoded"
+  produces:
+  - "application/json"
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/InputParam"
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: "Change email successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Verify reset password successfully
+  #Input params
+  InputParam:
+    type: object
+    properties:
+      verify_code:
+        type: string
+        example: 789541
+      email:
+        type: string
+        example: user@example.com

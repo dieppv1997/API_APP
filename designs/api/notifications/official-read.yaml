@@ -1,0 +1,20 @@
+post:
+  tags:
+    - notification
+  summary: Make as read official notification
+  description: ''
+  produces:
+    - application/json
+  parameters:
+    - name: notificationId
+      in: path
+      description: Official notification ID
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Make as read Successful
+    '404':
+      description: notificationId không tồn tại

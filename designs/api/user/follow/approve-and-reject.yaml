@@ -1,0 +1,44 @@
+put:
+  tags:
+    - follow user
+  summary: Approve follow request
+  description: ''
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn approve
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Approve successful
+    '404':
+      description: userId không tồn tại hoặc đang ở trạng thái không active
+    '400':
+      description: userId không hợp lệ, hoặc không tồn tại request follow từ userId
+delete:
+  tags:
+    - follow user
+  summary: Reject follow request
+  description: ''
+  produces:
+    - application/json
+  parameters:
+    - name: userId
+      in: path
+      description: ID của user muốn Reject
+      required: true
+      type: integer
+  security:
+  - Bearer: []
+  responses:
+    '200':
+      description: Reject successful
+    '404':
+      description: userId không tồn tại hoặc đang ở trạng thái không active
+    '400':
+      description: userId không hợp lệ, hoặc không tồn tại request follow từ userId

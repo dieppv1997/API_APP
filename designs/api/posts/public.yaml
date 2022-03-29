@@ -1,0 +1,54 @@
+post:
+  tags:
+    - post
+  summary: Public bài post
+  description: ''
+  consumes:
+    - multipart/form-data
+  produces:
+    - application/json
+  parameters:
+    - name: postId
+      in: path
+      description: ID của post
+      required: true
+      type: integer
+    - name: image
+      in: formData
+      description: File to upload. Cho phép up ảnh jpg, png, HEIC. Max 5MB
+      required: false
+      type: file
+    - name: caption
+      in: formData
+      type: string
+      required: false
+      maxLength: 2000
+      example: Hoa đẹp
+    - name: place
+      in: formData
+      type: integer
+      description: Địa điểm post bài
+      example: 1
+    - name: tags[]
+      in: formData
+      type: string
+      example: flower
+  security:
+    - Bearer: []
+  responses:
+    201:
+      description: Successful
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            example: Successful
+          data:
+            type: object
+            properties:
+              post_id:
+                type: integer
+                example: 1
+    404:
+      description: postId không hợp lệ hoặc draft post đã bị xóa

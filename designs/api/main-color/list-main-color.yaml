@@ -1,0 +1,52 @@
+get:
+  tags:
+    - "main color"
+  summary: Get list main-color for create post
+  description: Danh sách các main-color phục vụ khi người dùng tạo post phase 1.0
+  produces:
+    - "application/json"
+  parameters:
+    - name: current_page
+      in: query
+      description: Dùng để phân trang main-color
+      required: false
+      type: integer
+      minimum: 1
+      default: 1
+    - name: per_page
+      in: query
+      description: Dùng để phân trang main-color
+      required: false
+      type: integer
+      maximum: 20
+      minimum: 1
+      default: 10
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: "Successfully"
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+    500:
+      description: "Internal server error"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+            name:
+              type: string
+              example: 北海道
+            code:
+              type: string
+              example: F04F04
+

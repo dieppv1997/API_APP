@@ -1,0 +1,26 @@
+get:
+  tags:
+  - "web view"
+  summary: Get link get view picture book.
+  description: ''
+  produces:
+  - "application/json"
+  security:
+    - Bearer: []
+  responses:
+    "200":
+      description: "successfully"
+      schema:
+        type: object
+        properties:
+          data:
+            type: object
+            properties:
+              name:
+                type: string
+                example: 'Picture page'
+              url:
+                type: string
+                example: http://example.come
+    "500":
+      description: "Internal server error"

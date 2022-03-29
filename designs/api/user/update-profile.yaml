@@ -1,0 +1,63 @@
+post:
+  tags:
+    - user
+  summary: Update profile
+  description: ''
+  consumes:
+    - multipart/form-data
+  produces:
+    - application/json
+  parameters:
+    - name: nickname
+      in: formData
+      type: string
+      required: true
+    - name: avatar_image
+      in: formData
+      description: Upload avatar image. Allow upload jpg, jpeg, png. Max 5MB
+      required: false
+      type: file
+    - name: cover_image
+      in: formData
+      description: Upload cover image. Allow upload jpg, jpeg, png. Max 5MB
+      required: false
+      type: file
+    - name: birthday
+      in: formData
+      type: string
+      required: false
+      example: '1998-12-31'
+    - name: gender
+      in: formData
+      type: integer
+      required: false
+      description: 1 = male, 2 = female, 3 = other
+      example: 1
+    - name: favorite_shop
+      required: false
+      in: formData
+      type: string
+      maxLength: 50
+    - name: favorite_place
+      required: false
+      in: formData
+      type: string
+      maxLength: 50
+    - name: intro
+      in: formData
+      type: string
+      maxLength: 150
+    - name: province_id
+      in: formData
+      type: int
+  security:
+    - Bearer: []
+  responses:
+    200:
+      description: Successful
+      schema:
+        type: object
+        properties:
+          message:
+            type: string
+            example: Successful

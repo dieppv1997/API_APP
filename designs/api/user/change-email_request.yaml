@@ -1,0 +1,38 @@
+post:
+  tags:
+  - "user"
+  summary: Yêu cầu đổi email
+  description: Gọi từ màn hình đổi email, truyền lên email để nhận verify_code
+  operationId: request-change-email
+  consumes:
+  - application/x-www-form-urlencoded
+  produces:
+  - application/json
+  parameters:
+  - name: body
+    in: body
+    required: true
+    schema:
+      $ref: "#/definitions/InputParam"
+  security:
+  - Bearer: []
+  responses:
+    "200":
+      description: Send verify email successfully
+      schema:
+        $ref: "#/definitions/SuccessResponse"
+definitions:
+  #Response format
+  SuccessResponse:
+    type: object
+    properties:
+      message:
+        type: string
+        example: Send verify email successfully
+  #Input params
+  InputParam:
+    type: object
+    properties:
+      email:
+        type: string
+        example: user@example.com
